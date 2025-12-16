@@ -2,14 +2,22 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, CheckCircle2, Loader2, ArrowRight } from "lucide-react";
+import { Postemail } from "../../app/api/route";
 
 export default function SignupForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("success");
+    setStatus("loading");
+    try {
+      await Postemail(email);
+      setStatus("success");
+    } catch (error) {
+      setStatus("error");
+      console.error("Error submitting email:", error);
+    }
   };
 
   return (
