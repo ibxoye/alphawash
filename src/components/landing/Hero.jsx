@@ -1,10 +1,18 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
+
+  const router = useRouter();
+
   const scrollToSignup = () => {
     document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const redirecttoreviews = () => {
+    router.push('/reviews');
   };
 
   return (
@@ -58,6 +66,15 @@ export default function Hero() {
             className="px-8 py-4 bg-gray-600 hover:bg-gray-500 text-white font-semibold rounded-full shadow-lg"
           > {/* bg-blue-600*/}
             Get Early Access →
+          </motion.button>
+
+          <motion.button
+            onClick={redirecttoreviews}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="ml-4 px-8 py-4 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-full shadow-lg"
+          >
+            Reviews
           </motion.button>
         </motion.div>
       </div>
