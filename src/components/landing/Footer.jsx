@@ -1,10 +1,22 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="py-12 bg-zinc-950 border-t border-zinc-900">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-        <div className="text-2xl font-black text-white tracking-tighter">
-          ALPHA<span className="text-gray-500">WASH</span>
-        </div>
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+
+        {/* Logo */}
+        <a href="/" className="flex items-center">
+          <div className="relative h-20 w-48">
+            <Image
+              src="/images/alphawash.png"
+              alt="AlphaWash logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </a>
 
         <p className="text-zinc-600 text-sm">
           © {new Date().getFullYear()} AlphaWash. All rights reserved.
@@ -21,6 +33,7 @@ export default function Footer() {
             GoFundMe
           </a>
         </div>
+
       </div>
     </footer>
   );
