@@ -7,14 +7,18 @@ export default function Hero() {
     document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToReviews = () => {
+    document.getElementById("reviews")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ 
+        style={{
           backgroundImage: "url('/images/alphawsh.jpeg')",
-           backgroundPosition: "center 10%",
+          backgroundPosition: "center 10%",
         }}
       />
 
@@ -51,14 +55,28 @@ export default function Hero() {
             No mess. No measuring. Just clean.
           </p>
 
-          <motion.button
-            onClick={scrollToSignup}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="px-8 py-4 bg-gray-600 hover:bg-gray-500 text-white font-semibold rounded-full shadow-lg"
-          > {/* bg-blue-600*/}
-            Get Early Access →
-          </motion.button>
+          {/* CTA Row */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.button
+              onClick={scrollToSignup}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full sm:w-auto px-8 py-4 bg-gray-600 hover:bg-gray-500 text-white font-semibold rounded-full shadow-lg"
+            >
+              Get Early Access →
+            </motion.button>
+
+            <motion.button
+                onClick={scrollToReviews}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-white bg-white/5 border border-white/10 shadow-lg hover:bg-white/10 transition"
+              >
+                See Reviews <span className="ml-2 text-gray-400">★</span>
+              </motion.button>
+
+            </div>
+
         </motion.div>
       </div>
     </section>
