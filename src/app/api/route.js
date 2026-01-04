@@ -24,15 +24,15 @@ export async function getreviews(){
     return data;
 }
 
-export async function Postreviews(display_name, stars, comment){
+export async function Postreviews({displayed_name, stars, comment}){
     const res = await fetch ('/api/reviews',{
         method: 'POST',
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({display_name, stars, comment})
+        body: JSON.stringify({displayed_name, stars, comment})
     })
 
     if(!res.ok){
-        throw new Error('Failed to fetch reviews');
+        throw new Error('Failed to submit review');
     }
 
     const data = await res.json();

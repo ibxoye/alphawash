@@ -2,13 +2,24 @@ import {createClient} from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function POST(request){
-    const {display_name, stars, comment} = await request.json();
+    const body = await request.json();
+
+    const displayed_name = (body.displayed_name ?? body.name ?? "").trim();
+    const stars = Number(body.stars);
+    const comment = (body.comment ?? "").trim();
+
+    if(!Number.isInteger(stars) || stars < 1 || stars > 5){
+        return NextResponse.json(
+            { ok: false, error: "Invalid input", received: { displayed_name, stars, comment } },
+            { status: 400 }
+        );
+    }
 
     const supabase = await createClient();
 
     const {data, error} = await supabase
         .from("reviews")
-        .insert([{display_name, stars, comment}])
+        .insert([{displayed_name, stars, comment}])
         .select()
         .single();
 

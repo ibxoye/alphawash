@@ -71,7 +71,7 @@ export default function Hero() {
             </motion.button>
 
             <motion.button
-                onClick={scrollToReviews}
+                onClick={redirecttoreviews}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-white bg-white/5 border border-white/10 shadow-lg hover:bg-white/10 transition"
