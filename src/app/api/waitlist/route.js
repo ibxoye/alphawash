@@ -48,8 +48,8 @@ import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
 const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -70,6 +70,7 @@ export async function POST(req) {
     }
 
     const normalizedEmail = email.trim().toLowerCase();
+
 
     // Try insert first (dedupe via UNIQUE)
     let { data: row, error } = await supabase
@@ -98,9 +99,28 @@ export async function POST(req) {
         subject: "You're on the Alphawsh early access list ✅",
         html: `
           <div style="font-family: Arial, sans-serif; line-height: 1.5;">
-            <h2>You’re in ✅</h2>
-            <p>Thanks for joining Alphawsh early access.</p>
-            <p>We’ll email you as soon as access opens.</p>
+            <h2>Welcome to Alpha Wash</h2>
+            <br/>
+            <p>You officially signed up, which tells us two things:</p>
+            <ol>
+              <li>You care about clean clothes.</li>
+              <li>You don’t have time for lame detergent</li>
+            </ol>
+            <br/>
+            <p>Alpha Wash is built for people who put their clothes through real work. Sweat, dirt, long days, and repeat. No fluff. No nonsense. Just powerful, eco-friendly laundry sheets that get the job done.</p>
+            <br/>
+            <p>By joining the list, you’ll get:</p>
+            <ul>
+              <li>Early access to drops</li>
+              <li>Exclusive deals</li>
+              <li>Updates we actually think are worth sending</li>
+            </ul>
+            <br/>
+            <p>No spam. No BS. If it’s in your inbox, it’s because it matters.</p>
+            <br/>
+            <p>Glad to have you with us</p>
+            <p>Now go get your clothes dirty, we’ve got the cleanup.</p>
+            <br/>
             <p style="margin-top: 24px;">– Alphawsh</p>
           </div>
         `,
